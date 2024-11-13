@@ -17,8 +17,6 @@ int main(int argc, char** argv)
     snprintf(outfile_name, len+20, "%s.patched", argv[1]);
     snprintf(bakfile_name, len+20, "%s.bak", argv[1]);
 
-    printf("Patching to: %s\n", outfile_name);
-
     FILE* infile = fopen(argv[1], "rb");
     FILE* patchfile = fopen(argv[2], "rb");
 
@@ -37,6 +35,8 @@ int main(int argc, char** argv)
         return -1;
     }
 
+    printf("Patching: %s\n", argv[1]);
+
     int result = DoPatch(patchfile, infile, outfile);
     if (PATCH_SUCCESS != result) {
         printf("Failed to patch %s\n", argv[2]);
@@ -52,5 +52,6 @@ int main(int argc, char** argv)
     rename(argv[1], bakfile_name);
     rename(outfile_name, argv[1]);
 
-    printf("Patching success\n");
+    printf("Patching success. Original file saved: %s\n", bakfile_name);
 }
+
