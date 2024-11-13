@@ -5,5 +5,5 @@ https://github.com/kichik/nsis/tree/master/Contrib/VPatch
 
 ## Usage
 
-patch <file> <patch>
+`patch [file] [patch]`
 
